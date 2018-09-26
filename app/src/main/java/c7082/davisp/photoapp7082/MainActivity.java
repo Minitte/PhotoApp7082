@@ -1,4 +1,4 @@
-package davis.c4932.photoapp7082;
+package c7082.davisp.photoapp7082;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
