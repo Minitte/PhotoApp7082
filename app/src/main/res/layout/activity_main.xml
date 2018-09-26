@@ -6,13 +6,141 @@
     android:layout_height="match_parent"
     tools:context="davis.c4932.photoapp7082.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/search_btn"
+        app:layout_constraintBottom_toTopOf="@+id/shareButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/shareButton"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/share_btn"
+        app:layout_constraintBottom_toTopOf="@+id/snapButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/snapButton"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/snap_btn"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="366dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/searchButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/primaryImage"
+            android:layout_width="255dp"
+            android:layout_height="220dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/backgrounds/scenic[2]" />
+
+        <TextView
+            android:id="@+id/captionText"
+            android:layout_width="255dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="TextView"
+            android:textAlignment="viewStart"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/primaryImage"
+            tools:text="@tools:sample/lorem/random" />
+
+        <TextView
+            android:id="@+id/dateText"
+            android:layout_width="165dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="TextView"
+            android:textAlignment="viewStart"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/editButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/captionText"
+            tools:text="@tools:sample/date/ddmmyy" />
+
+        <TextView
+            android:id="@+id/locationText"
+            android:layout_width="165dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="TextView"
+            android:textAlignment="viewStart"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/editButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dateText"
+            tools:text="@tools:sample/cities" />
+
+        <ImageButton
+            android:id="@+id/editButton"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="44dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/captionText"
+            app:srcCompat="@android:drawable/ic_menu_edit" />
+
+        <ImageButton
+            android:id="@+id/prevButton"
+            android:layout_width="30dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/primaryImage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_media_previous" />
+
+        <ImageButton
+            android:id="@+id/nextButton"
+            android:layout_width="30dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="64dp"
+            app:layout_constraintStart_toEndOf="@+id/primaryImage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_media_next" />
+
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
