@@ -7,4 +7,5 @@
     <string name="date_text">Date</string>
     <string name="location_text">Location</string>
     <string name="search_btn">Search</string>
+    <string name="capture_btn">Capture</string>
 </resources>
