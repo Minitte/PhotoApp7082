@@ -15,6 +15,10 @@ import c7082.davisp.photoapp7082.data.ImageData;
 
 public class ImageDatabase {
 
+    public static final String VERSION = "1";
+
+    private String version = VERSION;
+
     /**
      * A hash map containing ImageData
      * Key: Uri as string
