@@ -154,6 +154,37 @@ public class ImageDatabase {
     }
 
     /**
+     * Gets the value of listSortedByCaption
+     *
+     * @return a java.util.List<java.lang.String>
+     */
+    public List<String> getListSortedByCaption() {
+        return listSortedByCaption;
+    }
+
+    /**
+     * Gets the value of listSortedByDate
+     *
+     * @return a java.util.List<java.lang.String>
+     */
+    public List<String> getListSortedByDate() {
+        return listSortedByDate;
+    }
+
+    /**
+     * Gets the value of listSortedByLocation
+     *
+     * @return a java.util.List<java.lang.String>
+     */
+    public List<String> getListSortedByLocation() {
+        return listSortedByLocation;
+    }
+
+    /* =================
+           Comparators
+        ================= */
+
+    /**
      * Given the uri as string, get data from database and compare Captions
      */
     private class CaptionComparator implements Comparator<String> {
