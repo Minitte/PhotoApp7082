@@ -1,4 +1,4 @@
-package c7082.davisp.photoapp7082;
+package c7082.davisp.photoapp7082.views;
 
 import android.content.Context;
 import android.hardware.Camera;

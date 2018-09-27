@@ -1,11 +1,10 @@
-package c7082.davisp.photoapp7082;
+package c7082.davisp.photoapp7082.activities;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.net.Uri;
-import android.os.Debug;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,9 +19,9 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import c7082.davisp.photoapp7082.R;
 import c7082.davisp.photoapp7082.data.ImageData;
-
-import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
+import c7082.davisp.photoapp7082.views.CameraPreview;
 
 import static android.content.ContentValues.TAG;
 

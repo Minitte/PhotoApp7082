@@ -1,19 +1,14 @@
-package c7082.davisp.photoapp7082;
+package c7082.davisp.photoapp7082.activities;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,17 +16,19 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import c7082.davisp.photoapp7082.R;
 import c7082.davisp.photoapp7082.data.ImageData;
 import c7082.davisp.photoapp7082.database.ImageDatabase;
 import c7082.davisp.photoapp7082.database.ImageDatabaseLoader;
 import c7082.davisp.photoapp7082.database.ImageDatabaseSaver;
+import c7082.davisp.photoapp7082.dialog.EditDialogFragment;
 
 public class MainActivity extends AppCompatActivity implements EditDialogFragment.EditDialogListener {
 
     /**
      * Database of images
      */
-    private ImageDatabase database = new ImageDatabase();
+    public static ImageDatabase database = new ImageDatabase();
 
     /**
      * Path of db file
@@ -140,6 +137,10 @@ public class MainActivity extends AppCompatActivity implements EditDialogFragmen
         currentImage = imgData;
     }
 
+    /**
+     * Creates an edit dialog
+     * @param view
+     */
     public void createEditDialog(View view) {
 
         if (currentImage == null) {
@@ -150,6 +151,15 @@ public class MainActivity extends AppCompatActivity implements EditDialogFragmen
         edit.data = currentImage;
         edit.listener = this;
         edit.show(getSupportFragmentManager(), "editDialog");
+    }
+
+    /**
+     * Opens search activity
+     */
+    public void openSearchActivity(View view) {
+        Intent intent = new Intent(this, SearchActivity.class);
+        intent.putExtra("database", database);
+        startActivity(intent);
     }
 
     @Override
