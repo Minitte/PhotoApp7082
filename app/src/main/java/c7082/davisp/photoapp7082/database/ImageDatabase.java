@@ -1,4 +1,4 @@
-package c7082.davisp.photoapp7082.data;
+package c7082.davisp.photoapp7082.database;
 
 import android.net.Uri;
 
@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import c7082.davisp.photoapp7082.data.ImageData;
 
 public class ImageDatabase {
 

@@ -1,11 +1,7 @@
 package c7082.davisp.photoapp7082;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.hardware.Camera;
-import android.net.ParseException;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 import c7082.davisp.photoapp7082.data.ImageData;
-import c7082.davisp.photoapp7082.data.ImageDatabase;
+import c7082.davisp.photoapp7082.database.ImageDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
