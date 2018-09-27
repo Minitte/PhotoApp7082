@@ -3,13 +3,14 @@ package c7082.davisp.photoapp7082.data;
 import android.net.Uri;
 import android.util.Log;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class ImageData {
+public class ImageData implements Serializable {
 
     public static final String DATE_FORMAT = "MM-dd-yyyy HH:mm:ss";
 

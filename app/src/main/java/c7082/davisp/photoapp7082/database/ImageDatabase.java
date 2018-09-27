@@ -2,6 +2,7 @@ package c7082.davisp.photoapp7082.database;
 
 import android.net.Uri;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -13,7 +14,7 @@ import java.util.Map;
 
 import c7082.davisp.photoapp7082.data.ImageData;
 
-public class ImageDatabase {
+public class ImageDatabase implements Serializable {
 
     public static final String VERSION = "1";
 
@@ -40,6 +41,11 @@ public class ImageDatabase {
      * A list of sorted locations
      */
     private List<String> listSortedByLocation;
+
+    /**
+     * Number of entries
+     */
+    private int numEntries;
 
     /**
      * ImageDatabase constructor
@@ -108,6 +114,7 @@ public class ImageDatabase {
             database.put(img.getImagePath(), img);
             addToSortedList(img);
             sortAllList();
+            numEntries++;
         }
     }
 
@@ -119,6 +126,7 @@ public class ImageDatabase {
         if (img != null) {
             database.remove(img.getLocation());
             removeFromSortedList(img);
+            numEntries--;
         }
     }
 
@@ -193,6 +201,24 @@ public class ImageDatabase {
      */
     public List<String> getListSortedByLocation() {
         return listSortedByLocation;
+    }
+
+    /**
+     * Gets the value of version
+     *
+     * @return a java.lang.String
+     */
+    public String getVersion() {
+        return version;
+    }
+
+    /**
+     * Gets the value of numEntries
+     *
+     * @return a int
+     */
+    public int getNumEntries() {
+        return numEntries;
     }
 
     /* =================
