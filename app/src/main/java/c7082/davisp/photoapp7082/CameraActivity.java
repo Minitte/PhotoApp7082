@@ -36,6 +36,8 @@ public class CameraActivity extends AppCompatActivity {
     private Camera mCamera;
     private CameraPreview mPreview;
 
+    private static String latestTimestamp;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,8 +108,14 @@ public class CameraActivity extends AppCompatActivity {
         // To be safe, you should check that the SDCard is mounted
         // using Environment.getExternalStorageState() before doing this.
 
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES), "MyCameraApp");
+//        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+//                Environment.DIRECTORY_PICTURES), "MyCameraApp");
+
+        File mediaStorageDir = new File(
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+                "PhotoApp7082DP"
+        );
+
         // This location works best if you want the created images to be shared
         // between applications and persist after your app has been uninstalled.
 
@@ -121,6 +129,7 @@ public class CameraActivity extends AppCompatActivity {
 
         // Create a media file name
         String timeStamp = new SimpleDateFormat(ImageData.DATE_FORMAT).format(new Date());
+        latestTimestamp = timeStamp;
         File mediaFile;
         if (type == MEDIA_TYPE_IMAGE){
             mediaFile = new File(mediaStorageDir.getPath() + File.separator +
@@ -160,6 +169,7 @@ public class CameraActivity extends AppCompatActivity {
             Intent intent = new Intent();
 //            intent.putExtra("newImageUri", pictureFile.toURI().toString());
             intent.setData(Uri.fromFile(pictureFile));
+            intent.putExtra("imgDate", latestTimestamp);
             setResult(RESULT_OK, intent);
             finish();
         }
