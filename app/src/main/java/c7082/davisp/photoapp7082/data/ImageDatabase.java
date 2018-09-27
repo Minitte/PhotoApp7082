@@ -121,6 +121,15 @@ public class ImageDatabase {
      * @param imgUri
      * @return null if not in database
      */
+    public ImageData get(String imgUri) {
+        return database.get(imgUri);
+    }
+
+    /**
+     * Retrieves the ImageData corresponding to the imgUri
+     * @param imgUri
+     * @return null if not in database
+     */
     public ImageData get(Uri imgUri) {
         return database.get(imgUri.toString());
     }

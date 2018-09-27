@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.List;
@@ -62,10 +63,10 @@ public class MainActivity extends AppCompatActivity {
 
         imgIndex = (imgIndex + 1) % list.size();
 
-        try {
-            Uri uri = Uri.parse(list.get(imgIndex));
+        ImageData imgData = database.get(list.get(imgIndex));
 
-            setImageToDisplay(uri);
+        try {
+            setImageToDisplay(imgData);
 
         } catch (IOException e) {
             Log.e("bitmapRegister", e.getMessage());
@@ -86,10 +87,10 @@ public class MainActivity extends AppCompatActivity {
 
         imgIndex = (imgIndex - 1 + list.size()) % list.size();
 
-        try {
-            Uri uri = Uri.parse(list.get(imgIndex));
+        ImageData imgData = database.get(list.get(imgIndex));
 
-            setImageToDisplay(uri);
+        try {
+            setImageToDisplay(imgData);
 
         } catch (IOException e) {
             Log.e("bitmapRegister", e.getMessage());
@@ -125,12 +126,14 @@ public class MainActivity extends AppCompatActivity {
      */
     private ImageData RegisterImage(Uri imgUri, String imgDate) {
         try {
-            setImageToDisplay(imgUri);
-
             ImageData imgData = new ImageData(imgUri);
             imgData.setDateTaken(imgDate);
 
+            setImageToDisplay(imgData);
+
             database.register(imgData);
+
+            imgIndex++;
 
             return imgData;
 
@@ -143,14 +146,32 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Sets the display image
-     * @param imgUri
+     * @param imgData
      * @throws IOException
      */
-    private void setImageToDisplay(Uri imgUri) throws IOException {
-        Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imgUri);
+    private void setImageToDisplay(ImageData imgData) throws IOException {
+        // set image
+        Bitmap bitmap = MediaStore.Images.Media.getBitmap(
+                this.getContentResolver(),
+                imgData.getImagePathAsUri());
 
         ImageView imgView = findViewById(R.id.primaryImage);
 
         imgView.setImageBitmap(bitmap);
+
+        // set caption
+        TextView capView = findViewById(R.id.captionText);
+
+        capView.setText(imgData.getCaption());
+
+        // set date
+        TextView dateView = findViewById(R.id.dateText);
+
+        dateView.setText(imgData.getDateTaken());
+
+        // set location
+        TextView locView = findViewById(R.id.locationText);
+
+        locView.setText(imgData.getLocation());
     }
 }

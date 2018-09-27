@@ -128,8 +128,8 @@ public class CameraActivity extends AppCompatActivity {
         }
 
         // Create a media file name
-        String timeStamp = new SimpleDateFormat(ImageData.DATE_FORMAT).format(new Date());
-        latestTimestamp = timeStamp;
+        String timeStamp = new SimpleDateFormat("MMddyyyy_HHmmss").format(new Date());
+        latestTimestamp = new SimpleDateFormat(ImageData.DATE_FORMAT).format(new Date());
         File mediaFile;
         if (type == MEDIA_TYPE_IMAGE){
             mediaFile = new File(mediaStorageDir.getPath() + File.separator +

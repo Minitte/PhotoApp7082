@@ -11,7 +11,7 @@ import java.util.GregorianCalendar;
 
 public class ImageData {
 
-    public static final String DATE_FORMAT = "yyyyMMdd_HHmmss";
+    public static final String DATE_FORMAT = "MM-dd-yyyy HH:mm:ss";
 
     /**
      * Path/Uri of the image
@@ -58,6 +58,15 @@ public class ImageData {
      */
     public String getImagePath() {
         return imagePath;
+    }
+
+    /**
+     * Gets the value of imagePath
+     *
+     * @return a android.net.Uri
+     */
+    public Uri getImagePathAsUri() {
+        return Uri.parse(imagePath);
     }
 
     /**
