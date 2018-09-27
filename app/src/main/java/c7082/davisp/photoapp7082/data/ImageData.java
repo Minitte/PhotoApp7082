@@ -16,22 +16,22 @@ public class ImageData {
     /**
      * Path/Uri of the image
      */
-    private String imagePath;
+    private String imagePath = "";
 
     /**
      * The date of when the image was taken
      */
-    private String dateTaken;
+    private String dateTaken = "";
 
     /**
      * The caption of the image
      */
-    private String caption;
+    private String caption = "";
 
     /**
      * Location of where the image was taken
      */
-    private String Location;
+    private String Location = "";
 
     /**
      * Constructor on an ImageData
