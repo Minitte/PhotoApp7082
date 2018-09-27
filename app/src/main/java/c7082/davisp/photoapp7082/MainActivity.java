@@ -1,14 +1,19 @@
 package c7082.davisp.photoapp7082;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,7 +26,7 @@ import c7082.davisp.photoapp7082.database.ImageDatabase;
 import c7082.davisp.photoapp7082.database.ImageDatabaseLoader;
 import c7082.davisp.photoapp7082.database.ImageDatabaseSaver;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements EditDialogFragment.EditDialogListener {
 
     /**
      * Database of images
@@ -38,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
      */
     private int imgIndex;
 
+    /**
+     * current image's data
+     */
+    private ImageData currentImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +60,21 @@ public class MainActivity extends AppCompatActivity {
             ImageDatabaseLoader loader = new ImageDatabaseLoader(file.getPath());
 
             database = loader.loadDatabase();
+
+            imgIndex = database.getNumEntries() - 1;
+
+            List<String> list = database.getListSortedByDate();
+
+            ImageData imgData = database.get(list.get(imgIndex));
+
+            try {
+                setImageToDisplay(imgData);
+
+            } catch (IOException e) {
+                Log.e("bitmapDisplayStart", e.getMessage());
+            }
+
+            currentImage = imgData;
         }
     }
 
@@ -85,6 +110,8 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             Log.e("bitmapRegister", e.getMessage());
         }
+
+        currentImage = imgData;
     }
 
     /**
@@ -109,6 +136,20 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             Log.e("bitmapRegister", e.getMessage());
         }
+
+        currentImage = imgData;
+    }
+
+    public void createEditDialog(View view) {
+
+        if (currentImage == null) {
+            return;
+        }
+
+        EditDialogFragment edit = new EditDialogFragment();
+        edit.data = currentImage;
+        edit.listener = this;
+        edit.show(getSupportFragmentManager(), "editDialog");
     }
 
     @Override
@@ -151,9 +192,11 @@ public class MainActivity extends AppCompatActivity {
 
             ImageDatabaseSaver saver = new ImageDatabaseSaver(file.getPath());
 
-            imgIndex = database.getNumEntries();
+            imgIndex = database.getNumEntries() - 1;
 
             saver.writeDatabase(database);
+
+            currentImage = imgData;
 
             return imgData;
 
@@ -179,6 +222,14 @@ public class MainActivity extends AppCompatActivity {
 
         imgView.setImageBitmap(bitmap);
 
+        updateInfoFields(imgData);
+    }
+
+    /**
+     * Updates info field with given ImageData
+     * @param imgData
+     */
+    private void updateInfoFields(ImageData imgData) {
         // set caption
         TextView capView = findViewById(R.id.captionText);
 
@@ -193,5 +244,20 @@ public class MainActivity extends AppCompatActivity {
         TextView locView = findViewById(R.id.locationText);
 
         locView.setText(imgData.getLocation());
+    }
+
+    @Override
+    public void onDialogPositiveClick(String newCaption, String newLocation) {
+
+        currentImage.setCaption(newCaption);
+        currentImage.setLocation(newLocation);
+
+        updateInfoFields(currentImage);
+
+        File file = new File(dbPath);
+
+        ImageDatabaseSaver saver = new ImageDatabaseSaver(file.getPath());
+
+        saver.writeDatabase(database);
     }
 }
