@@ -1,10 +1,17 @@
 package c7082.davisp.photoapp7082.data;
 
 import android.net.Uri;
+import android.util.Log;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class ImageData {
+
+    public static final String DATE_FORMAT = "yyyyMMdd_HHmmss";
 
     /**
      * Path/Uri of the image
@@ -72,9 +79,27 @@ public class ImageData {
     }
 
     /**
+     * Gets the value of dateTaken
+     *
+     * @return a java.util.date
+     */
+    public Date getDateTakenAsDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+
+        try {
+            Date d = sdf.parse(dateTaken);
+            return d;
+        } catch (ParseException pe) {
+            Log.e("PE", pe.getMessage());
+        }
+
+        return null;
+    }
+
+    /**
      * Sets the dateTaken
      *
-             * @param dateTaken set dateTaken to this value
+     * @param dateTaken set dateTaken to this value
      */
     public void setDateTaken(String dateTaken) {
         this.dateTaken = dateTaken;
@@ -85,7 +110,7 @@ public class ImageData {
      *
      * @param dateTaken set dateTaken to this value
      */
-    public void setDateTaken(Date dateTaken) {
+    public void setDateTaken(SimpleDateFormat dateTaken) {
         this.dateTaken = dateTaken.toString();
     }
 
