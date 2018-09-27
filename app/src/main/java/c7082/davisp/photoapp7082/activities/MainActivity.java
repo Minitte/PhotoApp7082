@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements EditDialogFragmen
     /**
      * current image's data
      */
-    private ImageData currentImage;
+    public ImageData currentImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

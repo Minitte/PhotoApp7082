@@ -21,8 +21,6 @@ public class SearchResultActivity extends AppCompatActivity {
 
     private LinearLayout resultList;
 
-    private List<ImageView> imgViews;
-
     private List<ImageData> matches;
 
     private String captionCriteria;
@@ -36,12 +34,14 @@ public class SearchResultActivity extends AppCompatActivity {
 
         resultList = (LinearLayout) findViewById(R.id.resultList);
 
-        imgViews = new ArrayList<ImageView>();
         matches = new ArrayList<>();
 
         runCaptionSearch();
 
         addResults();
+
+        TextView numResultView = findViewById(R.id.numResults);
+        numResultView.setText(matches.size() + " result(s)");
     }
 
     private void runCaptionSearch() {
