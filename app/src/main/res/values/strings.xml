@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">PhotoApp7082</string>
+    <string name="edit_btn">Edit</string>
+    <string name="share_btn">Share</string>
+    <string name="snap_btn">Snap</string>
+    <string name="caption_text">Caption</string>
+    <string name="date_text">Date</string>
+    <string name="location_text">Location</string>
+    <string name="search_btn">Search</string>
+    <string name="capture_btn">Capture</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="submit">Submit</string>
+</resources>
