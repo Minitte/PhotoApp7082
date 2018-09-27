@@ -26,6 +26,7 @@
         android:layout_height="124dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="106dp"
+        android:onClick="prevImage"
         app:layout_constraintEnd_toStartOf="@+id/primaryImage"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_chevron_left_black_24dp" />
@@ -36,6 +37,7 @@
         android:layout_height="124dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="106dp"
+        android:onClick="nextImage"
         app:layout_constraintStart_toEndOf="@+id/primaryImage"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_chevron_right_black_24dp" />
