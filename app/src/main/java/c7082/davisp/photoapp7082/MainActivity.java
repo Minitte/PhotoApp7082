@@ -3,6 +3,7 @@ package c7082.davisp.photoapp7082;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,11 +12,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 import c7082.davisp.photoapp7082.data.ImageData;
 import c7082.davisp.photoapp7082.database.ImageDatabase;
+import c7082.davisp.photoapp7082.database.ImageDatabaseLoader;
+import c7082.davisp.photoapp7082.database.ImageDatabaseSaver;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
      * Database of images
      */
     private ImageDatabase database = new ImageDatabase();
+
+    /**
+     * Path of db file
+     */
+    private String dbPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/PhotoApp7082DP/imgDB.data";
 
     /**
      * Index of current image displayed
@@ -33,6 +42,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        File file = new File(dbPath);
+
+        if (file.exists())
+        {
+            ImageDatabaseLoader loader = new ImageDatabaseLoader(file.getPath());
+
+            database = loader.loadDatabase();
+        }
     }
 
     /**
@@ -129,7 +147,13 @@ public class MainActivity extends AppCompatActivity {
 
             database.register(imgData);
 
-            imgIndex++;
+            File file = new File(dbPath);
+
+            ImageDatabaseSaver saver = new ImageDatabaseSaver(file.getPath());
+
+            imgIndex = database.getNumEntries();
+
+            saver.writeDatabase(database);
 
             return imgData;
 
