@@ -43,6 +43,12 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
 
         SearchResultActivity.locationBounds = getLocationSearch();
 
+        if (SearchResultActivity.captionSearch == null &&
+                SearchResultActivity.dateBounds == null &&
+                SearchResultActivity.locationBounds == null) {
+            return;
+        }
+
         startActivity(intent);
     }
 
@@ -133,11 +139,23 @@ public class SearchActivity extends AppCompatActivity implements DatePickerFragm
 
         try {
             double minLatParsed = Double.parseDouble(minLat.getText().toString());
-            double minLongPrased = Double.parseDouble(minLong.getText().toString());
+            double minLongParsed = Double.parseDouble(minLong.getText().toString());
             double maxLatParsed = Double.parseDouble(maxLat.getText().toString());
-            double maxLongPrased = Double.parseDouble(maxLong.getText().toString());
+            double maxLongParsed = Double.parseDouble(maxLong.getText().toString());
 
-            LocationBounds bounds = new LocationBounds(minLatParsed, maxLatParsed, minLongPrased, maxLongPrased);
+            if (minLatParsed > maxLatParsed) {
+                double tmp = maxLatParsed;
+                maxLatParsed = minLatParsed;
+                minLatParsed = tmp;
+            }
+
+            if (minLongParsed > maxLongParsed) {
+                double tmp = maxLongParsed;
+                maxLongParsed = minLongParsed;
+                minLongParsed = tmp;
+            }
+
+            LocationBounds bounds = new LocationBounds(minLatParsed, maxLatParsed, minLongParsed, maxLongParsed);
             return bounds;
         } catch(NumberFormatException nfe) {
 
