@@ -7,19 +7,19 @@ public class LocationData  implements Serializable {
     /**
      * longitude value
      */
-    private String longitude;
+    private double longitude;
 
     /**
      * latitude value
      */
-    private String latitude;
+    private double latitude;
 
     /**
      * Constructor taking a long and lat
      * @param longitude
      * @param latitude
      */
-    public LocationData(String longitude, String latitude) {
+    public LocationData(double longitude, double latitude) {
         this.longitude = longitude;
         this.latitude = latitude;
     }
@@ -27,9 +27,9 @@ public class LocationData  implements Serializable {
     /**
      * Gets the value of longitude
      *
-     * @return a java.lang.String
+     * @return a double
      */
-    public String getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
@@ -38,16 +38,16 @@ public class LocationData  implements Serializable {
      *
      * @param longitude set longitude to this value
      */
-    public void setLongitude(String longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
     /**
      * Gets the value of latitude
      *
-     * @return a java.lang.String
+     * @return a double
      */
-    public String getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
@@ -56,7 +56,7 @@ public class LocationData  implements Serializable {
      *
      * @param latitude set latitude to this value
      */
-    public void setLatitude(String latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
