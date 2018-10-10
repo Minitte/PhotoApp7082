@@ -1,6 +1,8 @@
-package c7082.davisp.photoapp7082.data;
+package c7082.davisp.photoapp7082.bounds;
 
-public class LocationBounds {
+import java.io.Serializable;
+
+public class LocationBounds implements Serializable {
 
     /**
      * Minimal latitude

@@ -107,6 +107,27 @@ public class ImageData implements Serializable {
     }
 
     /**
+     * Gets the value of dateTaken
+     * @return
+     */
+    public GregorianCalendar getDateTakenAsGC() {
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+
+        try {
+            Date d = sdf.parse(dateTaken);
+            GregorianCalendar gc = new GregorianCalendar();
+
+            gc.setTime(d);
+
+            return gc;
+        } catch (ParseException pe) {
+            Log.e("PE", pe.getMessage());
+        }
+
+        return null;
+    }
+
+    /**
      * Sets the dateTaken
      *
      * @param dateTaken set dateTaken to this value
