@@ -32,7 +32,7 @@ public class ImageData implements Serializable {
     /**
      * Location of where the image was taken
      */
-    private String Location = "";
+    private LocationData Location;
 
     /**
      * Constructor on an ImageData
@@ -145,9 +145,9 @@ public class ImageData implements Serializable {
     /**
      * Gets the value of Location
      *
-     * @return a java.lang.String
+     * @return a c7082.davisp.photoapp7082.data.LocationData
      */
-    public String getLocation() {
+    public LocationData getLocation() {
         return Location;
     }
 
@@ -156,7 +156,7 @@ public class ImageData implements Serializable {
      *
      * @param location set Location to this value
      */
-    public void setLocation(String location) {
+    public void setLocation(LocationData location) {
         Location = location;
     }
 }

@@ -257,7 +257,7 @@ public class ImageDatabase implements Serializable {
         public int compare(String firstUri, String secondUri) {
             ImageData first = database.get(firstUri);
             ImageData second = database.get(secondUri);
-            return first.getLocation().compareTo(second.getLocation());
+            return first.getLocation().getLatitude().compareTo(second.getLocation().getLatitude());
         }
     }
 }
