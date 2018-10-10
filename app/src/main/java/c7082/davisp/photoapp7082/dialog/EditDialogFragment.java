@@ -18,7 +18,7 @@ public class EditDialogFragment extends DialogFragment {
      * Edit listeners
      */
     public interface EditDialogListener {
-        public void onDialogPositiveClick(String newCaption, String newLocation);
+        public void onDialogPositiveClick(String newCaption);
     }
 
     /**
@@ -37,10 +37,8 @@ public class EditDialogFragment extends DialogFragment {
         View dialogView = inflater.inflate(R.layout.dialog_edit, null);
 
         final EditText editCaption = (EditText)dialogView.findViewById(R.id.editCaption);
-        final EditText editLocation = (EditText)dialogView.findViewById(R.id.editLocation);
 
         editCaption.setText(data.getCaption());
-        editLocation.setText(data.getLocation());
 
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
@@ -50,8 +48,7 @@ public class EditDialogFragment extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         listener.onDialogPositiveClick(
-                                editCaption.getText().toString(),
-                                editLocation.getText().toString());
+                                editCaption.getText().toString());
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

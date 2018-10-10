@@ -253,14 +253,13 @@ public class MainActivity extends AppCompatActivity implements EditDialogFragmen
         // set location
         TextView locView = findViewById(R.id.locationText);
 
-        locView.setText(imgData.getLocation());
+        locView.setText(imgData.getLocation().toString());
     }
 
     @Override
-    public void onDialogPositiveClick(String newCaption, String newLocation) {
+    public void onDialogPositiveClick(String newCaption) {
 
         currentImage.setCaption(newCaption);
-        currentImage.setLocation(newLocation);
 
         updateInfoFields(currentImage);
 
