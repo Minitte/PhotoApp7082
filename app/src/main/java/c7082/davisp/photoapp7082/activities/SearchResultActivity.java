@@ -15,28 +15,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 import c7082.davisp.photoapp7082.R;
+import c7082.davisp.photoapp7082.bounds.DateBounds;
+import c7082.davisp.photoapp7082.bounds.LocationBounds;
 import c7082.davisp.photoapp7082.data.ImageData;
 
 public class SearchResultActivity extends AppCompatActivity {
 
+    public static String captionSearch;
+
+    public static DateBounds dateBounds;
+
+    public static LocationBounds locationBounds;
+
     private LinearLayout resultList;
 
     private List<ImageData> matches;
-
-    private String captionCriteria;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
 
-        captionCriteria = getIntent().getStringExtra("captionSearch");
-
         resultList = (LinearLayout) findViewById(R.id.resultList);
 
         matches = new ArrayList<>();
 
-        runCaptionSearch();
+        // filter list
+        filterList(captionSearch, dateBounds, locationBounds);
 
         addResults();
 
@@ -44,15 +49,25 @@ public class SearchResultActivity extends AppCompatActivity {
         numResultView.setText(matches.size() + " result(s)");
     }
 
-    private void runCaptionSearch() {
+    private void filterList(String caption, DateBounds dateBounds, LocationBounds locBounds) {
         List<String> byCaption = MainActivity.database.getListSortedByCaption();
 
         for (int i = 0; i < byCaption.size(); i++) {
             ImageData data = MainActivity.database.get(byCaption.get(i));
 
-            if (data.getCaption().contains(captionCriteria)) {
-                matches.add(data);
+            if (caption != null && !data.getCaption().contains(caption)) {
+                continue;
             }
+
+            if (dateBounds != null && !dateBounds.Contains(data.getDateTakenAsGC())) {
+                continue;
+            }
+
+            if (locBounds != null && !locBounds.contains(data.getLocation().getLatitude(), data.getLocation().getLongitude())) {
+                continue;
+            }
+
+            matches.add(data);
         }
     }
 
