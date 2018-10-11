@@ -18,6 +18,7 @@ import java.util.List;
 
 import c7082.davisp.photoapp7082.R;
 import c7082.davisp.photoapp7082.data.ImageData;
+import c7082.davisp.photoapp7082.data.LocationData;
 import c7082.davisp.photoapp7082.database.ImageDatabase;
 import c7082.davisp.photoapp7082.database.ImageDatabaseLoader;
 import c7082.davisp.photoapp7082.database.ImageDatabaseSaver;
@@ -175,8 +176,10 @@ public class MainActivity extends AppCompatActivity implements EditDialogFragmen
             case CameraActivity.REQUEST_ID:
                 Uri imgUri = data.getData();
                 String imgDate = data.getStringExtra("imgDate");
+                double longitude = data.getDoubleExtra("long", 0);
+                double latitude = data.getDoubleExtra("lat", 0);
 
-                RegisterImage(imgUri, imgDate);
+                RegisterImage(imgUri, imgDate, latitude, longitude);
 
                 imgIndex++;
 
@@ -189,10 +192,11 @@ public class MainActivity extends AppCompatActivity implements EditDialogFragmen
     /**
      * Registers the image to the database
      */
-    private ImageData RegisterImage(Uri imgUri, String imgDate) {
+    private ImageData RegisterImage(Uri imgUri, String imgDate, double latitude, double longitude) {
         try {
             ImageData imgData = new ImageData(imgUri);
             imgData.setDateTaken(imgDate);
+            imgData.setLocation(new LocationData(longitude, latitude));
 
             setImageToDisplay(imgData);
 
@@ -253,14 +257,13 @@ public class MainActivity extends AppCompatActivity implements EditDialogFragmen
         // set location
         TextView locView = findViewById(R.id.locationText);
 
-        locView.setText(imgData.getLocation());
+        locView.setText(imgData.getLocation().toString());
     }
 
     @Override
-    public void onDialogPositiveClick(String newCaption, String newLocation) {
+    public void onDialogPositiveClick(String newCaption) {
 
         currentImage.setCaption(newCaption);
-        currentImage.setLocation(newLocation);
 
         updateInfoFields(currentImage);
 

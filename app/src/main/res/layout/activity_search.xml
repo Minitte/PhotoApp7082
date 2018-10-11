@@ -40,27 +40,122 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/captionInput" />
 
-    <EditText
-        android:id="@+id/dateInput"
+    <TextView
+        android:id="@+id/locationLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/date_text"
-        android:inputType="datetime"
+        android:layout_marginTop="32dp"
+        android:text="@string/location_text"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/dateToBtn" />
+
+    <TextView
+        android:id="@+id/locationLabel2"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="To:"
+        android:textAlignment="textEnd"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locationLabel3" />
+
+    <TextView
+        android:id="@+id/locationLabel3"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="From:"
+        android:textAlignment="textEnd"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locationLabel" />
 
     <Button
         android:id="@+id/submitBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:onClick="submitSearch"
         android:text="@string/submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/minLat"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="Latitude"
+        app:layout_constraintStart_toEndOf="@+id/locationLabel2"
+        app:layout_constraintTop_toBottomOf="@+id/locationLabel" />
+
+    <EditText
+        android:id="@+id/maxLat"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="Latitude"
+        app:layout_constraintStart_toEndOf="@+id/locationLabel2"
+        app:layout_constraintTop_toBottomOf="@+id/minLat" />
+
+    <EditText
+        android:id="@+id/minLong"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="Longitude"
+        app:layout_constraintStart_toEndOf="@+id/minLat"
+        app:layout_constraintTop_toBottomOf="@+id/locationLabel" />
+
+    <EditText
+        android:id="@+id/maxLong"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="Longitude"
+        app:layout_constraintStart_toEndOf="@+id/minLat"
+        app:layout_constraintTop_toBottomOf="@+id/minLong" />
+
+    <Button
+        android:id="@+id/dateFromBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:onClick="setDateTo"
+        android:hint="From"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateInput" />
+        app:layout_constraintTop_toBottomOf="@+id/dateLabel" />
+
+    <Button
+        android:id="@+id/dateToBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:hint="To"
+        android:onClick="setDateFrom"
+        app:layout_constraintStart_toEndOf="@+id/dateFromBtn"
+        app:layout_constraintTop_toBottomOf="@+id/dateLabel" />
 
 </android.support.constraint.ConstraintLayout>
