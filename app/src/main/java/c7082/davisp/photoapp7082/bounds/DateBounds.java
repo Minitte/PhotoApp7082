@@ -33,4 +33,9 @@ public class DateBounds implements Serializable {
     public boolean Contains(Calendar cal) {
         return cal.after(min) && cal.before(max);
     }
+
+    @Override
+    public String toString() {
+        return min.toString() + " TO " + max.toString();
+    }
 }

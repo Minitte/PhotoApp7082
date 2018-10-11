@@ -137,25 +137,25 @@
         app:layout_constraintTop_toBottomOf="@+id/minLong" />
 
     <Button
-        android:id="@+id/dateToBtn"
+        android:id="@+id/dateFromBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:onClick="setDateTo"
-        android:hint="To"
+        android:hint="From"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateLabel" />
 
     <Button
-        android:id="@+id/dateFromBtn"
+        android:id="@+id/dateToBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:hint="From"
+        android:hint="To"
         android:onClick="setDateFrom"
-        app:layout_constraintStart_toEndOf="@+id/dateToBtn"
+        app:layout_constraintStart_toEndOf="@+id/dateFromBtn"
         app:layout_constraintTop_toBottomOf="@+id/dateLabel" />
 
 </android.support.constraint.ConstraintLayout>

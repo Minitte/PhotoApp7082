@@ -44,23 +44,6 @@ public class ImageDatabaseExpressoTest {
     }
 
     @Test
-    public void testEditDisplayLocation() {
-        onView(withId(R.id.editButton))
-                .perform(click());
-
-        onView((withId(R.id.editLocation)))
-                .inRoot(isDialog())
-                .perform(replaceText("At expresso's cafe"));
-
-        onView(withText("Save"))
-                .inRoot(isDialog())
-                .perform(click());
-
-        onView(withId(R.id.locationText))
-                .check(matches(withText("At expresso's cafe")));
-    }
-
-    @Test
     public void testEditDatabaseUpdateCaption() {
         onView(withId(R.id.editButton))
                 .perform(click());
@@ -83,16 +66,10 @@ public class ImageDatabaseExpressoTest {
         onView(withId(R.id.editButton))
                 .perform(click());
 
-        onView((withId(R.id.editLocation)))
-                .inRoot(isDialog())
-                .perform(replaceText("far far away"));
-
         onView(withText("Save"))
                 .inRoot(isDialog())
                 .perform(click());
 
         ImageData current = mActivityRule.getActivity().currentImage;
-
-        assertEquals("far far away", current.getLocation());
     }
 }

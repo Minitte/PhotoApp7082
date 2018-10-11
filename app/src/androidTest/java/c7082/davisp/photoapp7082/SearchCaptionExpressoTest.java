@@ -1,9 +1,15 @@
 package c7082.davisp.photoapp7082;
 
+import android.support.test.espresso.UiController;
+import android.support.test.espresso.ViewAction;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.view.View;
+import android.widget.TextView;
 
+import org.hamcrest.Matcher;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,14 +24,25 @@ import static android.support.test.espresso.action.ViewActions.*;
 import static android.support.test.espresso.assertion.ViewAssertions.*;
 import static android.support.test.espresso.matcher.RootMatchers.*;
 import static android.support.test.espresso.matcher.ViewMatchers.*;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class SearchExpressoTest {
+public class SearchCaptionExpressoTest {
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule =
             new ActivityTestRule<>(MainActivity.class);
+
+    @Before
+    public void setup() {
+        onView(withId(R.id.snapBtn))
+                .perform(click());
+
+        onView(withId(R.id.captureBtn))
+                .perform(click());
+    }
 
     @Test
     public void testSearchForResults() {
@@ -48,7 +65,8 @@ public class SearchExpressoTest {
                 .perform(click());
 
         onView(withId(R.id.captionInput))
-                .perform(replaceText(id + ""));
+                .perform(replaceText(id + ""))
+                .perform(closeSoftKeyboard());
 
         onView(withId(R.id.submitBtn))
                 .perform(click());
@@ -58,13 +76,14 @@ public class SearchExpressoTest {
     }
 
     @Test
-    public void testSearchForResultsNo() {
+    public void testSearchForResultsNone() {
 
         onView(withId(R.id.searchBtn))
                 .perform(click());
 
         onView(withId(R.id.captionInput))
-                .perform(replaceText("fdasg465547ghf"));
+                .perform(replaceText("fdasg465547ghf"))
+                .perform(closeSoftKeyboard());
 
         onView(withId(R.id.submitBtn))
                 .perform(click());
@@ -72,4 +91,8 @@ public class SearchExpressoTest {
         onView(withId(R.id.numResults))
                 .check(matches(withText("0 result(s)")));
     }
+
+
+
+
 }
